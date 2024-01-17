@@ -19,37 +19,64 @@ public class Main {
     public static boolean isValid(long number) {
         String creditCardAsString = String.valueOf(number);
         // Check length of number for appropriate range
-        if (creditCardAsString.length() < 13 || creditCardAsString.length() > 16) {
-            return false;
-        // Check for valid prefix
-        } else if (prefixMatched(number, 1) || prefixMatched(number, 2)) {
-            // TODO Proceed through steps
-            return true;
+        if (creditCardAsString.length() >= 13 && creditCardAsString.length() <= 16) {
+            // Check for valid prefix
+            if (prefixMatched(number, 1) || prefixMatched(number, 2)) {
+                // Check sums for divisible by 10
+                /** TEST ONLY
+                int division = ((sumOfDoubleEvenPlace(number) + sumOfOddPlace(number)) % 10);
+                System.out.print("DIV CHECK" + division);
+                 */
+                if ((sumOfDoubleEvenPlace(number) + sumOfOddPlace(number)) % 10 == 0) {
+                    return true;
+                }
+            }
         }
         return false;
 
     }
 
-//    /** Get the result from Step 2 */
-//    public static int sumOfDoubleEvenPlace(long number) {
-//
-//
-//    }
+    /** Get the result from Step 2 */
+    public static int sumOfDoubleEvenPlace(long number) {
+        int sum = 0;
+        number /= 10;
+        while (number > 0) {
+            sum += getDigit((int)(number % 10)*2);
+            number /= 100;
+        }
+        /** TEST ONLY
+        System.out.println("Sum even: " + sum);
+         */
+        return sum;
 
-//    /** Return this number if it is a single digit, otherwise,
-//     * return the sum of the two digits */
-//    public static int getDigit(int number) {
-//
-//    }
-//
-//    /** Return sum of odd-place digits in number */
-//    public static int sumOfOddPlace(long number) {
-//
-//    }
+    }
 
-    /** Return true if the number d is a prefix for number
-//     * converts number to string and uses .startsWith() to check against d
-     **/
+    /** Return this number if it is a single digit, otherwise,
+     * return the sum of the two digits */
+    public static int getDigit(int number) {
+        if (getSize(number) > 1) {
+            int d1 = number % 10;
+            int d2 = number / 10;
+            return d1 + d2;
+        }
+        return number;
+    }
+
+    /** Return sum of odd-place digits in number */
+    public static int sumOfOddPlace(long number) {
+        int sum = 0;
+
+        while (number > 0) {
+            sum += getDigit((int)(number % 10));
+            number /= 100;
+        }
+        /** TEST ONLY
+        System.out.println("Sum odd: " + sum);
+         */
+        return sum;
+    }
+
+    /** Return true if the number d is a prefix for number */
     public static boolean prefixMatched(long number, int d) {
         // get prefix and cast to int
         int prefix = (int)getPrefix(number, d);
@@ -81,3 +108,6 @@ public class Main {
 
 
 }
+//4388576018410707
+//0,0,8,2,3,1,7,8
+//5,5,2,7,0,5,7,6

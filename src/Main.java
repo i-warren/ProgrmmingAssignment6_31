@@ -28,13 +28,11 @@ public class Main {
             // Check for valid prefix
             if (prefixMatched(number, 1) || prefixMatched(number, 2)) {
                 // Check sums for divisible by 10
-                /** TEST ONLY
+                /* TEST ONLY
                 int division = ((sumOfDoubleEvenPlace(number) + sumOfOddPlace(number)) % 10);
                 System.out.print("DIV CHECK" + division);
                  */
-                if ((sumOfDoubleEvenPlace(number) + sumOfOddPlace(number)) % 10 == 0) {
-                    return true;
-                }
+                return (sumOfDoubleEvenPlace(number) + sumOfOddPlace(number)) % 10 == 0;
             }
         }
         return false;
@@ -49,7 +47,7 @@ public class Main {
             sum += getDigit((int)(number % 10)*2);
             number /= 100;
         }
-        /** TEST ONLY
+        /* TEST ONLY
         System.out.println("Sum even: " + sum);
          */
         return sum;
@@ -75,7 +73,7 @@ public class Main {
             sum += getDigit((int)(number % 10));
             number /= 100;
         }
-        /** TEST ONLY
+        /* TEST ONLY
         System.out.println("Sum odd: " + sum);
          */
         return sum;
@@ -105,6 +103,7 @@ public class Main {
         if (getSize(number) < k) {
             return number;
         }
+
         //convert to string
         String creditCardAsString = String.valueOf(number);
         // take substring of 0,k and cast to long

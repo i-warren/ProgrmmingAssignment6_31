@@ -1,11 +1,19 @@
 import java.util.*;
 
-// Class validates card number using the Luhn Check
-// Check for number length 13-16
-// Check for prefixes 4,5,37, or 6
-// 1. Double every second digit from right to left. If doubling of a digit results in a
-// two-digit number, add up the two digits to get a single-digit number.
-//
+/**Class validates card number using the Luhn Check
+ * Check for number length 13-16
+ * Check for prefixes 4,5,37, or 6
+ * 1. Double every second digit from right to left. If doubling of a digit results in a
+ * two-digit number, add up the two digits to get a single-digit number.
+ * 2. Now add all single-digit numbers from Step 1. If a number becomes two digits, add the digits together
+ * 3. Add all digits in the odd places from right to left in the card number.
+ * 4. Sum the results from Step 2 and Step 3.
+ * 5. If the result from Step 4 is divisible by 10, the card number is valid; otherwise,
+ * it is invalid. For example, the number 4388576018402626 is invalid, but the
+ * number 4388576018410707 is valid.
+ * Author Isaac Warren
+ * Created 1.16.24
+ * last updated 1.17.24*/
 public class Main {
     public static void main(String[] args) {
         //Prompt user to enter credit card number
@@ -39,7 +47,10 @@ public class Main {
 
     }
 
-    /** Get the result from Step 2 */
+    /** Get the result from Step 2
+     * doubles every even number from the right and sums the reults.
+     * If doubling results in two digits, those digits are added
+     * together before being added to sum. */
     public static int sumOfDoubleEvenPlace(long number) {
         int sum = 0;
         number /= 10;

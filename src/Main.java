@@ -110,6 +110,4 @@ public class Main {
         // take substring of 0,k and cast to long
         return Long.parseLong(creditCardAsString.substring(0, k));
     }
-
-
 }

@@ -1,6 +1,11 @@
 import java.util.*;
 
 // Class validates card number using the Luhn Check
+// Check for number length 13-16
+// Check for prefixes 4,5,37, or 6
+// 1. Double every second digit from right to left. If doubling of a digit results in a
+// two-digit number, add up the two digits to get a single-digit number.
+//
 public class Main {
     public static void main(String[] args) {
         //Prompt user to enter credit card number
